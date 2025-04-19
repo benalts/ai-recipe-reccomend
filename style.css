@@ -1,4 +1,62 @@
 body {
-    background-color: beige;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f0dc; /* Beige */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  form button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff914d;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  form .secondary {
+    background-color: #ddd;
+    color: #333;
+    margin-top: 0.5rem;
   }
   
