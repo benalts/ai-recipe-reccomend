@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giga-Byte - AI Recipe Recommender (Guest Session)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="chat-container">
+    <img src="images/pizza_logo.png" alt="AI Pizza Logo" class="logo" />
+    <h1>AI Recipe Recommender - Guest Session</h1>
+    <p>What are some ingredients you have in your pantry?</p>
+    
+    <form id="chatForm">
+      <textarea name="userInput" placeholder="Type your ingredients here..." rows="4" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    
+    <div id="response" class="response-container"></div>
+  </div>
+
+  <script>
+    document.getElementById('chatForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const userInput = event.target.userInput.value;
+
+      const responseContainer = document.getElementById('response');
+      responseContainer.innerHTML = `<p><strong>You said:</strong> ${userInput}</p>`;
+      
+      // Here you can add logic to connect with your AI backend and generate responses
+      // For now, just an example response
+      responseContainer.innerHTML += `<p><strong>AI Recommender:</strong> [Hardcoded for now] Based on your ingredients, how about trying a spaghetti recipe?</p>`;
+      
+      event.target.reset();
+    });
+  </script>
+</body>
+</html>
