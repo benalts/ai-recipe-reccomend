@@ -21,17 +21,35 @@
   </div>
 
   <script>
-    document.getElementById('chatForm').addEventListener('submit', function(event) {
+    document.getElementById('chatForm').addEventListener('submit', async function(event) {
       event.preventDefault();
       const userInput = event.target.userInput.value;
 
       const responseContainer = document.getElementById('response');
       responseContainer.innerHTML = `<p><strong>You said:</strong> ${userInput}</p>`;
+      responseContainer.innerHTML += `<p><em>Loading recipe...</em></p>`;
       
-      // Here you can add logic to connect with your AI backend and generate responses
-      // For now, just an example response
-      responseContainer.innerHTML += `<p><strong>AI Recommender:</strong> [Hardcoded for now] Based on your ingredients, how about trying a spaghetti recipe?</p>`;
-      
+      try {
+        const res = await fetch('https://ai-recipe-backend-15no.onrender.com/api/recipe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ ingredients: userInput })
+        });
+
+        const data = await res.json();
+        
+        if (data.recipe) {
+          responseContainer.innerHTML += `<p><strong>AI Recommender:</strong><br>${data.recipe.replace(/\n/g, '<br>')}</p>`;
+        } else {
+          responseContainer.innerHTML += `<p><strong>Error:</strong> ${data.error || 'Unknown error.'}</p>`;
+        }
+      } catch (err) {
+        console.error('Request failed:', err);
+        responseContainer.innerHTML += `<p><strong>Error:</strong> Failed to connect to the recipe server.</p>`;
+      }
+
       event.target.reset();
     });
   </script>
