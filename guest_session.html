@@ -11,9 +11,23 @@
     <img src="images/pizza_logo.png" alt="AI Pizza Logo" class="logo" />
     <h1>AI Recipe Recommender - Guest Session</h1>
     <p>What are some ingredients you have in your pantry?</p>
+
+    
     
     <form id="chatForm">
       <textarea name="userInput" placeholder="Type your ingredients here..." rows="4" required></textarea>
+
+      <p>What kind of dish would you like?</p>
+
+      <div id="meal-buttons" style="margin-bottom: 10px;">
+        <button type="button" data-meal="breakfast">🍳 Breakfast</button>
+        <button type="button" data-meal="lunch">🥗 Lunch</button>
+        <button type="button" data-meal="dinner">🍝 Dinner</button>
+        <button type="button" data-meal="dessert">🍰 Dessert</button>
+        <button type="button" data-meal="snack">🍿 Snack</button>
+      </div>
+
+
       <button type="submit">Submit</button>
     </form>
     
@@ -21,6 +35,17 @@
   </div>
 
   <script>
+
+    let selectedMealType = '';
+
+    document.querySelectorAll('#meal-buttons button').forEach(button => {
+      button.addEventListener('click', () => {
+        selectedMealType = button.dataset.meal;
+        document.querySelectorAll('#meal-buttons button').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+      });
+    });
+
     document.getElementById('chatForm').addEventListener('submit', async function(event) {
       event.preventDefault();
       const userInput = event.target.userInput.value;
@@ -28,6 +53,11 @@
       const responseContainer = document.getElementById('response');
       responseContainer.innerHTML = `<p><strong>You said:</strong> ${userInput}</p>`;
       responseContainer.innerHTML += `<p><em>Loading recipe...</em></p>`;
+
+      let finalIngredients = userInput;
+      if (selectedMealType) {
+        finalIngredients += `. The user is looking for a recipe for ${selectedMealType}.`;
+      }
       
       try {
         const res = await fetch('https://ai-recipe-backend-15no.onrender.com/api/recipe', {
@@ -35,7 +65,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ ingredients: userInput })
+          body: JSON.stringify({ ingredients: finalIngredients })
         });
 
         const data = await res.json();
