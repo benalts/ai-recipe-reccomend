@@ -73,13 +73,13 @@ textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  resize: none; /* Disable resizing */
+  resize: none;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
   box-sizing: border-box;
-  height: 100px; /* Fixed height */
-  overflow-y: auto; /* Scrollable when content exceeds the height */
+  height: 100px; 
+  overflow-y: auto;
 }
 
 button {
@@ -94,22 +94,23 @@ button {
   font-size: 1rem;
 }
 
-/* Optional: better spacing for response area */
 .response-container {
   margin-top: 30px;
   padding-top: 20px;
   border-top: 2px dashed #ffae00;
 }
 
+/* meal buttons */
+
 #meal-buttons {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 8px; /* Adds spacing between buttons */
+  gap: 8px; 
   margin-bottom: 15px;
 }
 
-#meal-buttons button {
+#meal-buttons, button {
   padding: 6px 10px;
   font-size: 0.85rem;
   border: none;
@@ -125,6 +126,39 @@ button {
 }
 
 #meal-buttons button.active {
+  background-color: #ffc107;
+  color: black;
+  font-weight: bold;
+}
+
+/* preference buttons */
+
+#preference-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 buttons per row */
+  gap: 10px;
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+
+#preference-buttons button {
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #eeeeee;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#preference-buttons button:hover {
+  background-color: #ddd;
+}
+
+#preference-buttons button.active {
   background-color: #ffc107;
   color: black;
   font-weight: bold;
