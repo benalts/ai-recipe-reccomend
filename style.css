@@ -2,12 +2,9 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #f5f0dc; /* Beige */
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  font-family: sans-serif;
+  background-color: #fdf4dc;
+  overflow-y: auto; /* ✅ allows vertical scrolling */
 }
 
 /* Login Page Styling */
@@ -22,9 +19,9 @@ body {
 }
 
 .logo {
+  display: block;
+  margin: 0 auto 10px;
   width: 80px;
-  height: 80px;
-  margin-bottom: 1rem;
 }
 
 h1 {
@@ -64,11 +61,12 @@ form .secondary {
 
 /* Chat Session Styling */
 .chat-container {
-  width: 100%;
-  max-width: 400px;
+  max-width: 700px;
+  margin: 40px auto;
   padding: 20px;
-  margin: 0 auto;
-  text-align: center;
+  background-color: #fff8e7;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 textarea {
@@ -96,9 +94,11 @@ button {
   font-size: 1rem;
 }
 
+/* Optional: better spacing for response area */
 .response-container {
-  margin-top: 20px;
-  text-align: left;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px dashed #ffae00;
 }
 
 #meal-buttons {
