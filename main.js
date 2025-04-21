@@ -11,10 +11,10 @@ document.querySelectorAll('#meal-buttons button').forEach(button => {
 document.getElementById('chatForm').addEventListener('submit', async function(event) {
   event.preventDefault();
   const userInput = event.target.userInput.value;
-
   const responseContainer = document.getElementById('response');
+
   responseContainer.innerHTML = `<p><strong>You said:</strong> ${userInput}</p>`;
-  responseContainer.innerHTML += `<p><em>Loading recipe...</em></p>`;
+  responseContainer.innerHTML += `<p><em>Loading recipe and song recommendation...</em></p>`;
 
   let finalIngredients = userInput;
   if (selectedMealType) {
@@ -22,7 +22,8 @@ document.getElementById('chatForm').addEventListener('submit', async function(ev
   }
 
   try {
-    const res = await fetch('https://ai-recipe-backend-15no.onrender.com/api/recipe', {
+    // --- Recipe Request ---
+    const recipeRes = await fetch('https://ai-recipe-backend-15no.onrender.com/api/recipe', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -30,16 +31,36 @@ document.getElementById('chatForm').addEventListener('submit', async function(ev
       body: JSON.stringify({ ingredients: finalIngredients })
     });
 
-    const data = await res.json();
+    const recipeData = await recipeRes.json();
+    console.log('Recipe response:', recipeData);
 
-    if (data.recipe) {
-      responseContainer.innerHTML += `<p><strong>AI Recommender:</strong><br>${data.recipe.replace(/\n/g, '<br>')}</p>`;
+    if (recipeData.recipe) {
+      responseContainer.innerHTML += `<p><strong>AI Recommender (Recipe):</strong><br>${recipeData.recipe.replace(/\n/g, '<br>')}</p>`;
     } else {
-      responseContainer.innerHTML += `<p><strong>Error:</strong> ${data.error || 'Unknown error.'}</p>`;
+      responseContainer.innerHTML += `<p><strong>Recipe Error:</strong> ${recipeData.error || 'Unknown error.'}</p>`;
     }
+
+    // --- Song Request ---
+    const songRes = await fetch('https://ai-recipe-backend-15no.onrender.com/api/song', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ingredients: userInput })  // Only pass raw ingredients
+    });
+
+    const songData = await songRes.json();
+    console.log('Song response:', songData);
+
+    if (songData.song) {
+      responseContainer.innerHTML += `<p><strong>AI Recommender (Song Pairing):</strong><br>${songData.song}</p>`;
+    } else {
+      responseContainer.innerHTML += `<p><strong>Song Error:</strong> ${songData.error || 'Unknown error.'}</p>`;
+    }
+
   } catch (err) {
     console.error('Request failed:', err);
-    responseContainer.innerHTML += `<p><strong>Error:</strong> Failed to connect to the recipe server.</p>`;
+    responseContainer.innerHTML += `<p><strong>Error:</strong> Failed to connect to the server.</p>`;
   }
 
   event.target.reset();
