@@ -1,4 +1,5 @@
 let selectedMealType = '';
+let selectedPreferences = new Set();
 
 document.querySelectorAll('#meal-buttons button').forEach(button => {
   button.addEventListener('click', () => {
@@ -8,17 +9,49 @@ document.querySelectorAll('#meal-buttons button').forEach(button => {
   });
 });
 
+document.querySelectorAll('#preference-buttons button').forEach(button => {
+  button.addEventListener('click', () => {
+    const pref = button.dataset.pref;
+    if (selectedPreferences.has(pref)) {
+      selectedPreferences.delete(pref);
+      button.classList.remove('active');
+    } else {
+      selectedPreferences.add(pref);
+      button.classList.add('active');
+    }
+  });
+});
+
 document.getElementById('chatForm').addEventListener('submit', async function(event) {
   event.preventDefault();
   const userInput = event.target.userInput.value;
   const responseContainer = document.getElementById('response');
 
-  responseContainer.innerHTML = `<p><strong>You said:</strong> ${userInput}</p>`;
-  responseContainer.innerHTML += `<p><em>Loading recipe and song recommendation...</em></p>`;
+  // add what the user said
+
+  let contextSummary = userInput;
+
+  if (selectedMealType) {
+    contextSummary += `, ${selectedMealType}`;
+  }
+
+  if (selectedPreferences.size > 0) {
+    contextSummary += `, ${Array.from(selectedPreferences).join(', ')}`;
+  }
+
+  responseContainer.innerHTML = `<p><strong>You said:</strong> ${contextSummary}</p>`;
+
+  // end of add what the user said
+  responseContainer.innerHTML += `<p id="loading-msg"><em>Loading recipe and song recommendation...</em></p>`;
 
   let finalIngredients = userInput;
   if (selectedMealType) {
     finalIngredients += `. The user is looking for a recipe for ${selectedMealType}.`;
+  }
+
+  if (selectedPreferences.size > 0) {
+    const prefs = Array.from(selectedPreferences).join(', ');
+    finalIngredients += ` The user prefers a recipe that is: ${prefs}.`;
   }
 
   try {
@@ -58,10 +91,18 @@ document.getElementById('chatForm').addEventListener('submit', async function(ev
       responseContainer.innerHTML += `<p><strong>Song Error:</strong> ${songData.error || 'Unknown error.'}</p>`;
     }
 
+    const loadingMsg = document.getElementById('loading-msg');
+    if (loadingMsg) loadingMsg.remove();
+
   } catch (err) {
     console.error('Request failed:', err);
     responseContainer.innerHTML += `<p><strong>Error:</strong> Failed to connect to the server.</p>`;
   }
 
   event.target.reset();
+  selectedMealType = '';
+  selectedPreferences.clear();
+
+  //remove all selected bttons on submission
+  document.querySelectorAll('button.active').forEach(btn => btn.classList.remove('active'));
 });
