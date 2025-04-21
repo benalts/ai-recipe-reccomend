@@ -42,7 +42,7 @@ document.getElementById('chatForm').addEventListener('submit', async function(ev
   responseContainer.innerHTML = `<p><strong>You said:</strong> ${contextSummary}</p>`;
 
   // end of add what the user said
-  responseContainer.innerHTML += `<p id="loading-msg"><em>Loading recipe and song recommendation...</em></p>`;
+  responseContainer.innerHTML += `<p id="loading-msg"><em>Cooking up something tasty just for you...</em></p>`;
 
   let finalIngredients = userInput;
   if (selectedMealType) {
