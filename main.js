@@ -68,7 +68,7 @@ document.getElementById('chatForm').addEventListener('submit', async function(ev
     console.log('Recipe response:', recipeData);
 
     if (recipeData.recipe) {
-      responseContainer.innerHTML += `<p><strong>AI Recommender (Recipe):</strong><br>${recipeData.recipe.replace(/\n/g, '<br>')}</p>`;
+      responseContainer.innerHTML += `<p><strong>AI Recommender (Recipe) 📝:</strong><br>${recipeData.recipe.replace(/\n/g, '<br>')}</p>`;
     } else {
       responseContainer.innerHTML += `<p><strong>Recipe Error:</strong> ${recipeData.error || 'Unknown error.'}</p>`;
     }
@@ -86,7 +86,7 @@ document.getElementById('chatForm').addEventListener('submit', async function(ev
     console.log('Song response:', songData);
 
     if (songData.song) {
-      responseContainer.innerHTML += `<p><strong>AI Recommender (Song Pairing):</strong><br>${songData.song}</p>`;
+      responseContainer.innerHTML += `<p><strong>AI Recommender (Song Pairing) 🎵:</strong><br>${songData.song}</p>`;
     } else {
       responseContainer.innerHTML += `<p><strong>Song Error:</strong> ${songData.error || 'Unknown error.'}</p>`;
     }
