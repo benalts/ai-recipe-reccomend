@@ -1,7 +1,7 @@
 let selectedMealType = '';
 let selectedPreferences = new Set();
 let currentUserId = localStorage.getItem('user_id') || null;
-let recipeData = null; // to store latest recipe for saving
+let recipeData = null; 
 
 // === Meal Button Handling ===
 document.querySelectorAll('#meal-buttons button').forEach(button => {
@@ -77,7 +77,7 @@ if (document.getElementById('chatForm')) {
       const songRes = await fetch('https://ai-recipe-backend-15no.onrender.com/api/song', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ recipe: recipeData.recipe })  // Send actual recipe
+        body: JSON.stringify({ recipe: recipeData.recipe })  
       });
       
 
@@ -109,16 +109,16 @@ document.addEventListener('click', async function(event) {
   if (event.target && event.target.id === 'saveRecipeBtn') {
     if (!recipeData || !recipeData.recipe) return;
 
-    // ✅ Check if the user is logged in
+    
     if (!currentUserId) {
       alert('⚠️ You must be logged in to save recipes.');
       return;
     }
 
     const lines = recipeData.recipe.split('\n');
-    const title = lines[0].slice(0, 50); // First line as title
+    const title = lines[0].slice(0, 50); 
     const steps = lines.slice(1);
-    const ingredients = []; // Optional: parse if possible
+    const ingredients = []; 
 
     const payload = {
       user_id: currentUserId,
@@ -187,7 +187,7 @@ if (createAccountBtn) {
       const data = await res.json();
       console.log('User created:', data);
       alert('🎉 Account created successfully!');
-      // currentUserId = data.id; <-- you could store this if backend returns it
+      // currentUserId = data.id
     } catch (err) {
       console.error('Account creation failed:', err);
       alert('⚠️ Failed to create account.');
