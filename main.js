@@ -77,8 +77,9 @@ if (document.getElementById('chatForm')) {
       const songRes = await fetch('https://ai-recipe-backend-15no.onrender.com/api/song', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ingredients: userInput })
+        body: JSON.stringify({ recipe: recipeData.recipe })  // Send actual recipe
       });
+      
 
       const songData = await songRes.json();
       console.log('Song response:', songData);

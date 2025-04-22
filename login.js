@@ -1,4 +1,3 @@
-// login.js
 document.getElementById('loginForm').addEventListener('submit', async function (event) {
     event.preventDefault();
   
@@ -12,14 +11,20 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         body: JSON.stringify({ email, password })
       });
   
+      const contentType = res.headers.get("content-type");
+  
+      if (!contentType || !contentType.includes("application/json")) {
+        const text = await res.text();
+        console.error("Expected JSON, got:", text);
+        alert("❌ Unexpected response from server.");
+        return;
+      }
+  
       const data = await res.json();
   
       if (res.ok && data.id) {
-        // Save user info for use in logged_in_session.html
         localStorage.setItem('user_id', data.id);
         localStorage.setItem('email', data.email);
-  
-        // Redirect to logged in session
         window.location.href = 'logged_in_session.html';
       } else {
         alert('❌ Login failed. Please check your credentials.');
