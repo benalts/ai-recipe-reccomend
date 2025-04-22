@@ -5,7 +5,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const password = event.target.password.value;
   
     try {
-      const res = await fetch('https://init-db-082r.onrender.com/user/login', {
+      const res = await fetch('https://ai-recipe-backend-15no.onrender.com/user/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
