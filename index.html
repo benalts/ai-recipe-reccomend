@@ -6,7 +6,7 @@
   <title>Giga-Byte - AI Recipe Recommender</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="auth-page">
   <div class="login-container">
     <img src="images/pizza_logo.png" alt="AI Pizza Logo" class="logo" />
     <h1>Giga-Byte</h1>
@@ -15,11 +15,14 @@
       <input type="text" name="username" placeholder="Username" required />
       <input type="password" name="password" placeholder="Password" required />
       <button type="submit">Sign In</button>
-      <button type="button" class="secondary">Create an Account</button>
+      <a href="create_account.html">
+        <button type="button" class="secondary">Create an Account</button>
+      </a>      
       <a href="guest_session.html">
         <button type="button" class="secondary">[Guest Login]</button>
       </a>
     </form>
   </div>
+  <script src="login.js"></script>
 </body>
 </html>
