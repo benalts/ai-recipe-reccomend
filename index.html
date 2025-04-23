@@ -3,26 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Giga-Byte - AI Recipe Recommender</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Giga-Byte | Home</title>
+  <link rel="stylesheet" href="home_style.css" />
 </head>
-<body class="auth-page">
-  <div class="login-container">
-    <img src="images/pizza_logo.png" alt="AI Pizza Logo" class="logo" />
-    <h1>Giga-Bite</h1>
-    <p class="subtitle">AI Recipe Recommender</p>
-    <form id="loginForm">
-      <input type="text" name="username" placeholder="Username" required />
-      <input type="password" name="password" placeholder="Password" required />
-      <button type="submit">Sign In</button>
-      <a href="create_account.html">
-        <button type="button" class="secondary">Create an Account</button>
-      </a>      
-      <a href="guest_session.html">
-        <button type="button" class="secondary">[Guest Login]</button>
-      </a>
-    </form>
+<body>
+  <nav class="navbar">
+    <div class="nav-content">
+      <img src="images/pizza_logo.png" alt="AI Pizza Logo" class="nav-logo" />
+      <a href="login.html" class="nav-button">Sign In</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-inside">
+      <h1>What’s in Your Pantry?</h1>
+      <p class="hero-below-title">
+        Giga-Byte turns your random ingredients into delicious recipes with a pinch of AI magic.
+      </p>
+      <a href="guest_session.html" class="hero-button">Try as Guest</a>
+    </div>
   </div>
-  <script src="login.js"></script>
+
+  <div class="info-section">
+    <div class="info-content">
+      <h2>About Giga-Byte</h2>
+      <p>
+        Giga-Byte is your personal AI-powered recipe assistant. Just tell us what ingredients you have, and we’ll whip up recipes in seconds.
+        Whether you’re short on time or just out of ideas, we’re here to help you get creative in the kitchen.
+      </p>
+      <p>
+        No account needed. Try as a guest, or sign up to save your favorites and get personalized suggestions every time you cook!
+      </p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Tufts Giga-Byter Inc. All rights reserved.</p>
+      <p><a href="mailto:gigabyte@tufts.edu">gigabyte@tufts.edu</a></p>
+    </div>
+  </footer>
 </body>
 </html>
