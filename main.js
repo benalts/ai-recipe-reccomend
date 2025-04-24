@@ -93,6 +93,9 @@ if (document.getElementById('chatForm')) {
       const loadingMsg = document.getElementById('loading-msg');
       if (loadingMsg) loadingMsg.remove();
 
+      const signupInvite = document.getElementById('signup-invite');
+      if (signupInvite) signupInvite.style.display = 'block'; 
+
     } catch (err) {
       console.error('Request failed:', err);
       responseContainer.innerHTML += `<p><strong>Error:</strong> Failed to connect to the server.</p>`;
