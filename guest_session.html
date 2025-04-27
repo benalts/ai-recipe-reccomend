@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div style="position: relative; width: 100%; height: 60px;">
+    <button id="loginBtn" class="secondary" style="position: absolute;top: 15px;right: 30px;padding: 5px 15px;font-size: 1.3rem;width: 10%;height: 40px;background-color: #ff914d;color: white;">Login</button> 
+   </div>
   <div class="chat-container">
     <img src="images/pizza_logo.png" alt="AI Pizza Logo" class="logo" />
     <h1>AI Recipe Recommender - Guest Session</h1>
@@ -62,5 +65,13 @@
   </div>
 
   <script src="main.js"></script>
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    if (loginBtn) {
+      loginBtn.addEventListener('click', () => {
+        window.location.href = 'login.html'; 
+      });
+    }
+  </script>  
 </body>
 </html>

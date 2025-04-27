@@ -192,3 +192,8 @@ body.auth-page {
     width: 90%;
   }
 }
+
+#loginBtn {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
